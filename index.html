@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欧莱雅竞争对手与战略对比分析报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- 基本和布局 --- */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #D4AF37;
+            --accent-color: #C09A34;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-light: #888888;
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+            --border-radius: 12px;
+            --transition-speed: 0.3s;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Montserrat', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            padding: 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        /* --- 头部 --- */
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: white;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgzMCkiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHg9IjAiIHk9IjAiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.5;
+        }
+        
+        .header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-top: 0.75rem;
+            position: relative;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- 指标卡片 --- */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .metric-card {
+            background-color: var(--bg-secondary);
+            padding: 1.75rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .metric-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .metric-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .metric-value.highlight {
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .metric-value.highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--secondary-color);
+            opacity: 0.3;
+        }
+
+        /* --- 图表容器 --- */
+        .chart-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+        
+        .chart-card:hover::before {
+            opacity: 1;
+        }
+        
+        .chart-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        
+        .chart-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+        
+        .chart-canvas-container {
+            position: relative;
+            flex-grow: 1;
+            min-height: 380px;
+        }
+
+        /* --- 表格 --- */
+        .table-container {
+            overflow-x: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.95rem;
+        }
+        
+        .data-table th, .data-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .data-table th:first-child {
+            border-top-left-radius: var(--border-radius);
+        }
+        
+        .data-table th:last-child {
+            border-top-right-radius: var(--border-radius);
+        }
+        
+        .data-table tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.02);
+        }
+        
+        .data-table tr:hover {
+            background-color: rgba(212,175,55,0.05);
+        }
+        
+        .data-table td {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .growth-positive { 
+            color: #16a34a; 
+            font-weight: 600; 
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .growth-positive::before {
+            content: '▲ ';
+            font-size: 0.8em;
+            margin-right: 2px;
+        }
+        
+        .growth-negative { 
+            color: #dc2626; 
+            font-weight: 600; 
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .growth-negative::before {
+            content: '▼ ';
+            font-size: 0.8em;
+            margin-right: 2px;
+        }
+
+        /* --- 响应式设计 --- */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .header {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .metric-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+            
+            .chart-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* --- 动画效果 --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header, .metric-card, .chart-card {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .metric-card:nth-child(1) { animation-delay: 0.1s; }
+        .metric-card:nth-child(2) { animation-delay: 0.2s; }
+        .metric-card:nth-child(3) { animation-delay: 0.3s; }
+        .metric-card:nth-child(4) { animation-delay: 0.4s; }
+        .metric-card:nth-child(5) { animation-delay: 0.5s; }
+        .metric-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .chart-card:nth-child(1) { animation-delay: 0.3s; }
+        .chart-card:nth-child(2) { animation-delay: 0.4s; }
+        .chart-card:nth-child(3) { animation-delay: 0.5s; }
+        .chart-card:nth-child(4) { animation-delay: 0.6s; }
+        .chart-card:nth-child(5) { animation-delay: 0.7s; }
+        .chart-card:nth-child(6) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>欧莱雅竞争对手与战略对比分析报告</h1>
+            <p>2024年度市场洞察与竞争格局</p>
+        </div>
+
+        <div class="metric-grid">
+            <div class="metric-card"><div class="metric-value">€434.8亿</div><div class="metric-label">欧莱雅2024销售额</div></div>
+            <div class="metric-card"><div class="metric-value highlight">+5.1%</div><div class="metric-label">同比增长率</div></div>
+            <div class="metric-card"><div class="metric-value">20.0%</div><div class="metric-label">营业利润率</div></div>
+            <div class="metric-card"><div class="metric-value">28.2%</div><div class="metric-label">电商销售占比</div></div>
+            <div class="metric-card"><div class="metric-value">37</div><div class="metric-label">全球品牌数量</div></div>
+            <div class="metric-card"><div class="metric-value">150+</div><div class="metric-label">业务覆盖国家</div></div>
+        </div>
+
+        <div class="dashboard-grid">
+            
+            <div class="chart-card">
+                <h2 class="chart-title">全球美妆市场规模与预测</h2>
+                <div class="chart-canvas-container"><canvas id="globalMarketChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">全球美妆市场年度增长率</h2>
+                <div class="chart-canvas-container"><canvas id="marketGrowthChart"></canvas></div>
+            </div>
+            
+            <div class="chart-card">
+                <h2 class="chart-title">主要美妆集团2024年预估销售额</h2>
+                <div class="chart-canvas-container"><canvas id="competitorSalesChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">2024年全球区域市场份额</h2>
+                <div class="chart-canvas-container"><canvas id="regionMarketShareChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">全球美妆品类的市场份额</h2>
+                <div class="chart-canvas-container"><canvas id="categoryShareChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">潜在消费者增长 (2024 vs 2030)</h2>
+                <div class="chart-canvas-container"><canvas id="consumerGrowthChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">品牌矩阵战略定位对比</h2>
+                <div class="chart-canvas-container"><canvas id="strategyRadarChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">新兴市场增长潜力: 中国 vs 印度</h2>
+                <div class="chart-canvas-container"><canvas id="emergingMarketsChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">雅诗兰黛2024年品类销售额分布</h2>
+                <div class="chart-canvas-container"><canvas id="esteeCategoriesChart"></canvas></div>
+            </div>
+            
+            <div class="chart-card">
+                <h2 class="chart-title">美妆科技(Beauty Tech)的市场预测</h2>
+                <div class="chart-canvas-container"><canvas id="beautyTechChart"></canvas></div>
+            </div>
+
+            <div class="chart-card">
+                <h2 class="chart-title">消费者可持续性价值观</h2>
+                <div class="chart-canvas-container"><canvas id="sustainabilityChart"></canvas></div>
+            </div>
+            
+            <div class="chart-card">
+                <h2 class="chart-title">美妆品类增长趋势 (2021-2024)</h2>
+                <div class="chart-canvas-container"><canvas id="categoryGrowthChart"></canvas></div>
+            </div>
+            
+            <div class="chart-card" style="grid-column: 1 / -1;">
+                <h2 class="chart-title">主要竞争对手2024年财务表现概览</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>公司</th>
+                                <th>2024年销售额 (预估)</th>
+                                <th>增长率</th>
+                                <th>核心优势</th>
+                                <th>主要挑战</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>欧莱雅</strong></td><td>€434.8亿</td><td class="growth-positive">+5.1%</td><td>全品类覆盖，研发实力强</td><td>中国市场竞争加剧</td></tr>
+                            <tr><td><strong>雅诗兰黛</strong></td><td>$156.1亿</td><td class="growth-negative">-2.0% (有机)</td><td>高端品牌组合，香水业务</td><td>亚洲旅游零售下滑</td></tr>
+                            <tr><td><strong>宝洁美妆</strong></td><td>~$151.2亿</td><td class="growth-positive">+3.0% (有机)</td><td>供应链效率高，大众品牌力</td><td>SK-II在中国表现疲软</td></tr>
+                            <tr><td><strong>联合利华 (美妆与健康)</strong></td><td>€132亿</td><td class="growth-positive">+6.5% (内生)</td><td>收购整合能力，使命驱动品牌</td><td>大众品牌增长乏力</td></tr>
+                            <tr><td><strong>资生堂</strong></td><td>¥9906亿 (约€59亿)</td><td class="growth-positive">+1.8% (报告)</td><td>亚洲市场深耕，护肤科技</td><td>中国市场表现不稳</td></tr>
+                            <tr><td><strong>LVMH (香水&化妆品)</strong></td><td>$89亿</td><td class="growth-positive">N/A</td><td>奢侈品定位，品牌协同</td><td>高度依赖旅游零售</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js 全局配置
+            Chart.defaults.font.family = "'Noto Sans SC', 'Montserrat', sans-serif";
+            Chart.defaults.font.size = 13;
+            Chart.defaults.plugins.legend.position = 'bottom';
+            Chart.defaults.plugins.legend.labels.padding = 20;
+            Chart.defaults.plugins.legend.labels.usePointStyle = true;
+            Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+            Chart.defaults.plugins.tooltip.titleFont = { size: 14, weight: 'bold' };
+            Chart.defaults.plugins.tooltip.bodyFont = { size: 13 };
+            Chart.defaults.plugins.tooltip.padding = 12;
+            Chart.defaults.plugins.tooltip.cornerRadius = 6;
+            Chart.defaults.plugins.tooltip.displayColors = true;
+            Chart.defaults.plugins.tooltip.boxPadding = 6;
+
+            const lorealPalette = {
+                dark: '#1a1a1a',
+                gold: '#D4AF37',
+                lightGold: '#E9D58A',
+                pink: '#F7C5CC',
+                gray: '#6c757d',
+                blue: '#4285F4',
+                purple: '#8E54E9',
+                red: '#E53E3E',
+                green: '#10B981',
+                orange: '#F59E0B',
+                teal: '#0D9488', // For Makeup
+                sky: '#0EA5E9' // For Fragrances
+            };
+
+            // 改进的渐变色函数
+            const createGradient = (chart, color1, color2) => {
+                const { ctx, chartArea } = chart;
+                if (!chartArea) {
+                    return color1;
+                }
+                const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                gradient.addColorStop(0, color2);
+                gradient.addColorStop(1, color1);
+                return gradient;
+            };
+
+            // 1. 全球美妆市场规模与预测
+            new Chart(document.getElementById('globalMarketChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2024E', '2025E', '2030E', '2034E'],
+                    datasets: [{
+                        label: '市场规模',
+                        data: [598.6, 677.2, 1064, 1151.2],
+                        borderColor: lorealPalette.dark,
+                        backgroundColor: (context) => createGradient(context.chart, 'rgba(26, 26, 26, 0.4)', 'rgba(26, 26, 26, 0)'),
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: lorealPalette.dark,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        borderWidth: 3
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: $${c.parsed.y} 十亿` } },
+                        legend: { display: false }
+                    },
+                    scales: { 
+                        y: { 
+                            title: { display: true, text: '十亿美元 ($)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 2. 全球美妆市场年度增长率
+            new Chart(document.getElementById('marketGrowthChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: '年增长率',
+                        data: [4, 4, 4, 5, 6, 5, -8, 8, 6, 8, 4.5],
+                        backgroundColor: (context) => {
+                            const chart = context.chart;
+                            const value = context.dataset.data[context.dataIndex];
+                            return value < 0 ? createGradient(chart, 'rgba(229, 62, 62, 0.8)', 'rgba(229, 62, 62, 0.5)') : createGradient(chart, 'rgba(212, 175, 55, 0.9)', 'rgba(212, 175, 55, 0.6)');
+                        },
+                        borderRadius: 6,
+                        borderWidth: 0,
+                        maxBarThickness: 35
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.parsed.y}%` } }
+                    },
+                    scales: { 
+                        y: { 
+                            title: { display: true, text: '增长率 (%)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 3. 主要竞争对手销售额对比
+            new Chart(document.getElementById('competitorSalesChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['欧莱雅', '联合利华', '雅诗兰黛', '宝洁', 'LVMH', '资生堂'],
+                    datasets: [{
+                        label: '销售额',
+                        data: [44.5, 26.2, 15.2, 15.0, 8.9, 8.2],
+                        backgroundColor: (context) => {
+                            const chart = context.chart;
+                            const colors = [
+                                ['#1a1a1a', '#333333'], ['#4285F4', '#5c97f5'], ['#8E54E9', '#a88beb'],
+                                ['#0EA5E9', '#38bdf8'], ['#6c757d', '#adb5bd'], ['#E53E3E', '#f76b6b']
+                            ];
+                            return createGradient(chart, colors[context.dataIndex][0], colors[context.dataIndex][1]);
+                        },
+                        borderRadius: 6,
+                        borderWidth: 0,
+                        maxBarThickness: 35
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    indexAxis: 'y', 
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: $${c.parsed.x} 十亿` } }
+                    },
+                    scales: { 
+                        x: { 
+                            title: { display: true, text: '十亿美元 ($)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 4. 2024年全球区域市场份额
+            new Chart(document.getElementById('regionMarketShareChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: ['北美', '北亚', '欧洲', 'SAPMENA-SSA', '拉丁美洲'],
+                    datasets: [{
+                        data: [29, 27, 24, 11, 9],
+                        backgroundColor: ['#333333', lorealPalette.gold, '#1a1a1a', lorealPalette.pink, lorealPalette.gray],
+                        borderColor: '#ffffff', 
+                        borderWidth: 2,
+                        hoverOffset: 15,
+                        hoverBorderWidth: 0
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { position: 'right' },
+                        tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` } }
+                    },
+                    layout: {
+                        padding: 20
+                    }
+                }
+            });
+            
+            // 5. 全球美妆品类的市场份额
+            new Chart(document.getElementById('categoryShareChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['护肤', '护发', '彩妆', '香水', '卫生用品'],
+                    datasets: [{
+                        data: [39, 21, 17, 13, 10],
+                        backgroundColor: [lorealPalette.purple, lorealPalette.gold, lorealPalette.teal, lorealPalette.sky, lorealPalette.orange],
+                        borderColor: '#ffffff', 
+                        borderWidth: 2,
+                        hoverOffset: 15,
+                        hoverBorderWidth: 0
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    cutout: '65%',
+                    plugins: { 
+                        legend: { position: 'right' },
+                        tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` } }
+                    },
+                    layout: {
+                        padding: 20
+                    }
+                }
+            });
+
+            // 6. 潜在消费者增长
+            new Chart(document.getElementById('consumerGrowthChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['北美', '欧洲', '拉丁美洲', 'SSA', 'SAPMENA', '北亚'],
+                    datasets: [
+                        { label: '2024', data: [370, 830, 390, 150, 1360, 1150], backgroundColor: 'rgba(108, 117, 125, 0.8)', borderRadius: 6, maxBarThickness: 30 },
+                        { label: '2030 增长', data: [15, 30, 30, 55, 470, 140], backgroundColor: 'rgba(212, 175, 55, 0.9)', borderRadius: 6, maxBarThickness: 30 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.parsed.y} 百万` } }
+                    },
+                    scales: { 
+                        y: { 
+                            stacked: true, 
+                            title: { display: true, text: '潜在消费者 (百万)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        }, 
+                        x: { 
+                            stacked: true,
+                            grid: { display: false }
+                        } 
+                    }
+                }
+            });
+
+            // 7. 品牌战略定位对比
+            new Chart(document.getElementById('strategyRadarChart').getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['品牌广度', '高端专注', '大众渗透', '数字化', '供应链', '使命驱动'],
+                    datasets: [
+                        { label: '欧莱雅', data: [9, 7, 8, 9, 8, 7], fill: true, backgroundColor: 'rgba(26, 26, 26, 0.2)', borderColor: lorealPalette.dark, pointBackgroundColor: lorealPalette.dark, borderWidth: 2, pointBorderColor: '#fff', pointBorderWidth: 2, pointHoverRadius: 7 },
+                        { label: '雅诗兰黛', data: [6, 9, 4, 8, 7, 6], fill: true, backgroundColor: 'rgba(212, 175, 55, 0.2)', borderColor: lorealPalette.gold, pointBackgroundColor: lorealPalette.gold, borderWidth: 2, pointBorderColor: '#fff', pointBorderWidth: 2, pointHoverRadius: 7 },
+                        { label: '联合利华', data: [7, 6, 7, 7, 7, 9], fill: true, backgroundColor: 'rgba(66, 133, 244, 0.2)', borderColor: lorealPalette.blue, pointBackgroundColor: lorealPalette.blue, borderWidth: 2, pointBorderColor: '#fff', pointBorderWidth: 2, pointHoverRadius: 7 }
+                    ]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    scales: { 
+                        r: { 
+                            suggestedMin: 0, 
+                            suggestedMax: 10, 
+                            pointLabels: { font: { size: 14, weight: '500' } }, 
+                            grid: { color: 'rgba(0,0,0,0.05)' }, 
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: { display: false }
+                        } 
+                    },
+                    elements: {
+                        line: { tension: 0.1 }
+                    }
+                }
+            });
+
+            // 8. 新兴市场增长潜力
+            new Chart(document.getElementById('emergingMarketsChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2023', '2025', '2027', '2030'],
+                    datasets: [
+                        { label: '中国市场', data: [null, 78, 96, 106.4], borderColor: lorealPalette.red, tension: 0.3, spanGaps: true, fill: true, backgroundColor: 'rgba(229, 62, 62, 0.1)', borderWidth: 3, pointBackgroundColor: lorealPalette.red, pointBorderColor: '#fff', pointBorderWidth: 2, pointRadius: 5, pointHoverRadius: 7 },
+                        { label: '印度市场', data: [14, null, 21, null], borderColor: lorealPalette.green, tension: 0.3, spanGaps: true, fill: true, backgroundColor: 'rgba(16, 185, 129, 0.1)', borderWidth: 3, pointBackgroundColor: lorealPalette.green, pointBorderColor: '#fff', pointBorderWidth: 2, pointRadius: 5, pointHoverRadius: 7 }
+                    ]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    plugins: { tooltip: { callbacks: { label: (c) => `${c.dataset.label}: $${c.parsed.y} 十亿` } } },
+                    scales: { 
+                        y: { 
+                            title: { display: true, text: '十亿美元 ($)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 9. 雅诗兰黛品类分布
+            new Chart(document.getElementById('esteeCategoriesChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: ['护肤', '彩妆', '香水', '护发'],
+                    datasets: [{
+                        data: [7.91, 4.47, 2.49, 0.63],
+                        backgroundColor: [lorealPalette.purple, lorealPalette.pink, lorealPalette.gold, lorealPalette.gray],
+                        borderColor: '#ffffff', 
+                        borderWidth: 2,
+                        hoverOffset: 15,
+                        hoverBorderWidth: 0
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { position: 'right' },
+                        tooltip: { callbacks: { label: (c) => `${c.label}: $${c.parsed.toFixed(2)} 十亿` } }
+                    },
+                    layout: {
+                        padding: 20
+                    }
+                }
+            });
+
+            // 10. 美妆科技市场
+            new Chart(document.getElementById('beautyTechChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2024', '2029'],
+                    datasets: [{
+                        label: '市场规模',
+                        data: [68.9, 131.0],
+                        borderColor: lorealPalette.gold,
+                        backgroundColor: (c) => createGradient(c.chart, 'rgba(212, 175, 55, 0.4)', 'rgba(212, 175, 55, 0)'),
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: lorealPalette.gold,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        borderWidth: 3
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: $${c.parsed.y} 十亿` } },
+                        legend: { display: false }
+                    },
+                    scales: { 
+                        y: { 
+                            title: { display: true, text: '十亿美元 ($)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 11. 消费者可持续性价值观
+            new Chart(document.getElementById('sustainabilityChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['环保包装购买意愿', '可持续包装支付溢价', '健康食品支付溢价'],
+                    datasets: [{
+                        label: '消费者比例',
+                        data: [62, 46, 55],
+                        backgroundColor: (context) => {
+                            const chart = context.chart;
+                            const colors = [
+                                ['#10B981', '#34D399'],
+                                ['#D4AF37', '#E9D58A'],
+                                ['#F7C5CC', '#FCA5A5']
+                            ];
+                            return createGradient(chart, colors[context.dataIndex][0], colors[context.dataIndex][1]);
+                        },
+                        borderRadius: 6,
+                        maxBarThickness: 35
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    indexAxis: 'y', 
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.parsed.x}%` } }
+                    },
+                    scales: { 
+                        x: { 
+                            title: { display: true, text: '比例 (%)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+             // 12. 品类增长趋势
+            new Chart(document.getElementById('categoryGrowthChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['香水', '彩妆', '护肤', '护发'],
+                    datasets: [{
+                        label: '增长率',
+                        data: [13, 7, 6, 6],
+                         backgroundColor: (context) => {
+                            const chart = context.chart;
+                            const colors = [
+                                ['#8E54E9', '#A78BEB'], ['#F7C5CC', '#FCA5A5'],
+                                ['#1a1a1a', '#333333'], ['#6c757d', '#ADB5BD']
+                            ];
+                            return createGradient(chart, colors[context.dataIndex][0], colors[context.dataIndex][1]);
+                        },
+                        borderRadius: 6,
+                        maxBarThickness: 35
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.parsed.y}%` } }
+                    },
+                    scales: { 
+                        y: { 
+                            title: { display: true, text: '增长率 (%)', font: { weight: '500' } },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
